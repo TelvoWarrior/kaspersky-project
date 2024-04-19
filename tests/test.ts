@@ -2,12 +2,11 @@ import { t } from "testcafe";
 import { TEST_URL } from "../test-data/configuration";
 import { Logger } from "testcafe-reporter-acd-html-reporter/lib/Logger";
 import { MainPage } from "../page-objects/pages/main-page";
-import { PlanItem } from "../page-objects/enums/plan-enum";
+import { PlanItem } from "../page-objects/enums/plan-item";
 import { PlanPanel } from "../page-objects/panels/plan-panel";
 import { ProductPageSteps } from "../page-objects/steps/product-page-steps";
 import { ComboboxSelector } from "../page-objects/entities/combobox-selector";
 import { PlansPageSteps } from "../page-objects/steps/plans-page-steps";
-import { ProductPanelEnum } from "../page-objects/enums/product-panel-enum";
 import { ProductPage } from "../page-objects/pages/product-page";
 
 fixture(`Kaspersky Project`)
@@ -41,7 +40,7 @@ test(`Kaspersky test`, async () => {
     Logger.step(2, `Click 'Learn More' in Standard Plan. Check product panel's data, data in bottom panel the same as in on plan's page`)
     const standardPlan = new PlanPanel(PlanItem.STANDARD);
     await standardPlan.learnMoreButtonSelector.click();
-    const standardProductPlanData = await ProductPageSteps.getProductData(ProductPanelEnum.TOP);
+    const standardProductPlanData = await ProductPageSteps.getProductData();
     const standardExtendedPlanData = await ProductPageSteps.getExtendedPlanData(PlanItem.STANDARD);
     await ProductPageSteps.checkProductData(standardPlanData, standardProductPlanData);
     await ProductPageSteps.checkPlanData(standardPlanData, standardExtendedPlanData);
@@ -73,7 +72,7 @@ test(`Kaspersky test`, async () => {
     await seeAllProductsButton.click();
     const plusPlan = new PlanPanel(PlanItem.PLUS);
     await plusPlan.learnMoreButtonSelector.click();
-    const plusProductPlanData = await ProductPageSteps.getProductData(ProductPanelEnum.TOP);
+    const plusProductPlanData = await ProductPageSteps.getProductData();
     const plusExtendedPlanData = await ProductPageSteps.getExtendedPlanData(PlanItem.PLUS);
     await ProductPageSteps.checkProductData(plusPlanData, plusProductPlanData);
     await ProductPageSteps.checkPlanData(plusPlanData, plusExtendedPlanData);
@@ -119,7 +118,7 @@ test(`Kaspersky test`, async () => {
     await seeAllProductsButton.click();
     const premiumPlan = new PlanPanel(PlanItem.PREMIUM);
     await premiumPlan.learnMoreButtonSelector.click();
-    const premiumProductPlanData = await ProductPageSteps.getProductData(ProductPanelEnum.TOP);
+    const premiumProductPlanData = await ProductPageSteps.getProductData();
     const premiumExtendedPlanData = await ProductPageSteps.getExtendedPlanData(PlanItem.PREMIUM);
     await ProductPageSteps.checkProductData(premiumPlanData, premiumProductPlanData);
     await ProductPageSteps.checkPlanData(premiumPlanData, premiumExtendedPlanData);
