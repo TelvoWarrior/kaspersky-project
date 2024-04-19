@@ -9,7 +9,6 @@ import { ProductPanel } from "../panels/product-panel";
 
 export class ProductPageStepsImpl extends ProductPage {
 
-    // Product panel section
     private async getProductTitle() {
         return await new ProductPanel().productTitleSelector.innerText;
     }
@@ -50,7 +49,6 @@ export class ProductPageStepsImpl extends ProductPage {
         return optionsList;
     }
 
-    //Feature blocks and cards section
     async getFeatureCardsTitleList() {
         const page = new ProductPage();
         const cardSelector = page.featureCardTitleSelector
@@ -94,7 +92,6 @@ export class ProductPageStepsImpl extends ProductPage {
         await t.expect(firstFeatureBlockList.sort().join() !== secondFeatureBlockList.sort().join()).ok(`Check list: \n${firstFeatureBlockList}\nand list: \n${secondFeatureBlockList}\n have different features`);
     }
 
-    //Plan panels section
     private async getExtendedProductTitle(plan: PlanItem) {
         const planPanel = this.getPlanSelector(plan);
         return await planPanel.productTitleSelector.innerText;
